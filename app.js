@@ -25,7 +25,9 @@ console.log('>> Section 4. Run an OS command using 4th argument being an OS comm
 if (process.argv.length > 4) 
 {
 const exec = require('child_process').exec;
-const child = exec(args[4],
+var args4=args[4];
+console.log('args4 is: '+args4);
+const child = exec(args4,
     (error, stdout, stderr) => {
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
