@@ -27,7 +27,7 @@ if (process.argv.length > 4)
 const exec = require('child_process').exec;
 var args4=args[4];
 console.log('args4 is: '+args4);
-const child = exec($args4,
+const child = exec(args4,
     (error, stdout, stderr) => {
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
