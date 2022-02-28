@@ -1,3 +1,7 @@
+// Example: node app.js 4 5 pwd
+
+const { stringify } = require('querystring');
+
 console.log('>> Section 1. Hardcoded values using \'new Function\' ...');
 const addition = new Function("a", "b", "return a+b");
 addition(1, 1);
@@ -10,16 +14,18 @@ console.log('The arguments are: ');
 console.log(args);
 
 console.log('>> Section 3. Adding 2 input arguments using new Function ...');
-if (process.argv.length > 4) 
+if (process.argv.length > 3) 
 {
 console.log('addition() result of ' + Number(args[2]) +' and ' + Number(args[3]) +' is: ' +addition(Number(args[2]),Number(args[3])));
 } else {
 console.log('addition() requires 2 arguments that are numbers');
 }
 
-console.log('>> Section 4. Run an OS command using 3rd argument ...');
+console.log('>> Section 4. Run an OS command using 4th argument being an OS commmand such as pwd ...');
+if (process.argv.length > 4) 
+{
 const exec = require('child_process').exec;
-const child = exec('cat ' +args[2]+'.js | wc -l',
+const child = exec(args[4],
     (error, stdout, stderr) => {
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
@@ -27,3 +33,6 @@ const child = exec('cat ' +args[2]+'.js | wc -l',
             console.log(`exec error: ${error}`);
         }
 });
+} else {
+    console.log('requires 3 arguments - number number OS-command');
+}
